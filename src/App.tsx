@@ -46,7 +46,12 @@ import { Properties } from "./editor/Properties";
 import { Gamification } from "./editor/Gamification";
 import { Assistant } from "./editor/Assistant";
 import { validateCourse, publishingIssues } from "./domain/validation";
-import { download, exportCourse, previewHTML } from "./scorm/export";
+import {
+  download,
+  exportCourse,
+  horizonteLogo,
+  previewHTML,
+} from "./scorm/export";
 type Modal =
   | "library"
   | "preview"
@@ -637,12 +642,37 @@ export default function App() {
                     Adicionar bloco
                     <small>Conteúdo, atividades e novas possibilidades</small>
                   </button>
-                  <div className="canvas-footer">
-                    <span>FIM DA PÁGINA</span>
-                    <span>
-                      Seu próximo insight começa com uma boa experiência.
-                    </span>
-                  </div>
+                  <footer className="canvas-footer studio-credits">
+                    <img
+                      src={horizonteLogo}
+                      alt="Grupo de Pesquisa Horizonte"
+                    />
+                    <div>
+                      <p>
+                        Desenvolvido pelo{" "}
+                        <strong>professor Dr. Glauber Santiago</strong> —
+                        DAC/UFSCar
+                      </p>
+                      <p>
+                        Apoio:{" "}
+                        <a
+                          href="https://grupohorizonte.ufscar.br/"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <strong>Grupo de Pesquisa Horizonte ↗</strong>
+                        </a>{" "}
+                        •{" "}
+                        <a
+                          href="https://servidores.ufscar.br/glauber/"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <strong>🌐 Website do Docente ↗</strong>
+                        </a>
+                      </p>
+                    </div>
+                  </footer>
                 </>
               ) : (
                 <div className="empty-state">
@@ -937,7 +967,7 @@ export default function App() {
             )}
             {modal === "templates" && (
               <div className="template-grid">
-                {Object.entries(templates).map(([name, parts], i) => (
+                {Object.entries(templates).map(([name, template], i) => (
                   <button
                     key={name}
                     onClick={() => {
@@ -945,12 +975,15 @@ export default function App() {
                       setModal(null);
                     }}
                   >
-                    <div className={"template-art color-" + i}>
+                    <div className={"template-art color-" + (i % 4)}>
                       <GraduationCap size={40} />
                       <span>0{i + 1}</span>
                     </div>
                     <h3>{name}</h3>
-                    <p>{parts.join(" → ")}</p>
+                    <p>{template.description}</p>
+                    <small className="template-journey">
+                      {template.journey.join(" → ")}
+                    </small>
                     <strong>
                       Usar template <ChevronRight size={14} />
                     </strong>

@@ -1,6 +1,6 @@
 import { openDB } from "idb";
 import type { Course, Progress } from "../domain/model";
-const db = openDB("scorm-studio", 1, {
+const db = openDB("scorm-studio-v2", 1, {
   upgrade(db) {
     db.createObjectStore("courses", { keyPath: "id" });
     db.createObjectStore("progress");

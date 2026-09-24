@@ -9,6 +9,11 @@ export function validateCourse(input: unknown): Course {
     !Array.isArray(c.badges)
   )
     throw Error("Arquivo de curso inválido.");
+  if (
+    typeof c.language !== "string" ||
+    !/^[a-z]{2,3}(-[A-Z]{2})?$/.test(c.language)
+  )
+    throw Error("Idioma do curso inválido.");
   const seen = new Set<string>();
   const id = (v: unknown) => {
     if (
@@ -31,12 +36,6 @@ export function validateCourse(input: unknown): Course {
       if (typeof p.title !== "string" || !Array.isArray(p.blocks))
         throw Error("Página inválida.");
       for (const b of p.blocks) {
-        // Cursos criados antes da remoção de respostas dissertativas são
-        // migrados para lacunas e exigem que o autor defina um gabarito.
-        if (b.type === "quiz" && (b.questionType as string) === "open") {
-          b.questionType = "fill";
-          b.correct = [];
-        }
         id(b.id);
         if (
           !Object.hasOwn(labels, b.type) ||

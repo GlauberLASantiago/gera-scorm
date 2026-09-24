@@ -95,6 +95,23 @@ export function Properties({
             }
           />
           <label className="field">
+            Idioma da leitura em voz alta
+            <select
+              value={course.language}
+              onChange={(e) =>
+                update((c) => {
+                  c.language = e.target.value;
+                })
+              }
+            >
+              <option value="pt-BR">Português (Brasil)</option>
+              <option value="pt-PT">Português (Portugal)</option>
+              <option value="en-US">English (United States)</option>
+              <option value="es-ES">Español</option>
+              <option value="fr-FR">Français</option>
+            </select>
+          </label>
+          <label className="field">
             Nota de aprovação
             <input
               type="number"

@@ -1,6 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { grade, metrics } from "./assessment";
-import { newBlock, emptyProgress, exampleCourse, fromTemplate } from "./model";
+import {
+  newBlock,
+  emptyProgress,
+  exampleCourse,
+  fromTemplate,
+  templates,
+} from "./model";
 describe("assessment", () => {
   it("ignores option order in multiple responses but rejects partial answers", () => {
     const b = {
@@ -38,6 +44,16 @@ describe("assessment", () => {
     const quiz = exampleCourse().modules[0].pages[2].blocks[0];
     expect(quiz.items.some((i) => i.id === quiz.correct[0])).toBe(true);
   });
-  it("creates independent template ids", () =>
-    expect(fromTemplate("Aula EAD").id).not.toBe(fromTemplate("Aula EAD").id));
+  it("creates six distinct, reusable pedagogical experiences", () => {
+    expect(Object.keys(templates)).toHaveLength(6);
+    const first = fromTemplate("Leitura guiada + questões");
+    const second = fromTemplate("Leitura guiada + questões");
+    expect(first.id).not.toBe(second.id);
+    expect(first.modules.flatMap((m) => m.pages).length).toBeGreaterThan(1);
+    expect(
+      first.modules
+        .flatMap((m) => m.pages.flatMap((p) => p.blocks))
+        .filter((b) => b.type === "quiz").length,
+    ).toBeGreaterThanOrEqual(6);
+  });
 });

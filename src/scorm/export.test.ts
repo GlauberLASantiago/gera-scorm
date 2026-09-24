@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect } from "vitest";
 import JSZip from "jszip";
-import { exportCourse, previewHTML } from "./export";
+import { cleanCourse, exportCourse, previewHTML } from "./export";
 import { exampleCourse, newBlock } from "../domain/model";
 function bytes(blob: Blob) {
   return new Promise<ArrayBuffer>((resolve, reject) => {
@@ -24,10 +24,12 @@ describe("portable exports", () => {
       "css/player.css",
       "data/course.json",
       "data/course.js",
+      "media/logo-horizonte.png",
     ])
       expect(zip.file(path), path).toBeTruthy();
     const script = await zip.file("js/player.js")!.async("string");
     expect(() => new Function(script)).not.toThrow();
+    expect(script).toContain("Ouvir esta página");
     const xml = new DOMParser().parseFromString(
       await zip.file("imsmanifest.xml")!.async("string"),
       "text/xml",
@@ -43,7 +45,11 @@ describe("portable exports", () => {
     c.modules[0].pages[0].blocks = [b];
     c.title = "</script><script>alert(3)</script>";
     const html = previewHTML(c);
-    expect(html).not.toContain("onerror");
+    const sanitized = cleanCourse(c);
+    expect(html).toContain('lang="pt-BR"');
+    expect(sanitized.modules[0].pages[0].blocks[0].body).not.toContain(
+      "onerror",
+    );
     expect(html).not.toContain("<script>alert(3)");
     expect(html.match(/<script>/g)?.length).toBe(1);
   });

@@ -1,6 +1,11 @@
 import { playerBrandCSS } from "./branding";
 // Self-contained runtime: serialized into every export, without CDN or build dependencies.
-export function courseRuntime(course: any, version: string, preview = false) {
+export function courseRuntime(
+  course: any,
+  version: string,
+  preview = false,
+  logoUrl = "",
+) {
   const root = document.getElementById("course")!;
   const pages = course.modules.flatMap((m: any) => m.pages);
   const allBlocks = pages.flatMap((p: any) => p.blocks);
@@ -1118,6 +1123,52 @@ export function courseRuntime(course: any, version: string, preview = false) {
       el("p", `PÁGINA ${pageIndex + 1} DE ${pages.length}`, "eyebrow"),
       el("h1", page.title),
     );
+    const speechStatus = el("span", undefined, "muted");
+    speechStatus.setAttribute("role", "status");
+    const speechTools = el("div", undefined, "speech-tools");
+    speechTools.append(
+      button("🔊 Ouvir esta página", () => {
+        const synth = (window as any).speechSynthesis;
+        const Utterance = (window as any).SpeechSynthesisUtterance;
+        if (!synth || !Utterance) {
+          speechStatus.textContent =
+            "A leitura em voz alta não está disponível neste navegador.";
+          return;
+        }
+        synth.cancel();
+        const text = Array.from(
+          main.querySelectorAll("h1,h2,h3,p,blockquote,li,th,td"),
+        )
+          .map((node: any) => node.textContent?.trim())
+          .filter(Boolean)
+          .join(". ");
+        const utterance = new Utterance(text);
+        utterance.lang = course.language || "pt-BR";
+        const voices = synth.getVoices?.() || [];
+        const exact = voices.find(
+          (voice: any) =>
+            voice.lang.toLowerCase() === utterance.lang.toLowerCase(),
+        );
+        const language = voices.find((voice: any) =>
+          voice.lang
+            .toLowerCase()
+            .startsWith(utterance.lang.slice(0, 2).toLowerCase()),
+        );
+        utterance.voice = exact || language || null;
+        utterance.onend = () =>
+          (speechStatus.textContent = "Leitura concluída.");
+        utterance.onerror = () =>
+          (speechStatus.textContent = "Não foi possível concluir a leitura.");
+        speechStatus.textContent = "Leitura em andamento…";
+        synth.speak(utterance);
+      }),
+      button("Parar leitura", () => {
+        (window as any).speechSynthesis?.cancel();
+        speechStatus.textContent = "Leitura interrompida.";
+      }),
+      speechStatus,
+    );
+    main.append(speechTools);
     page.blocks.forEach((b: any) => main.append(block(b)));
     const feedback = el("p");
     feedback.setAttribute("role", "status");
@@ -1169,10 +1220,38 @@ export function courseRuntime(course: any, version: string, preview = false) {
       );
     }
     root.append(main);
+    const credits = el("footer", undefined, "player-credits");
+    if (logoUrl) {
+      const logo = document.createElement("img");
+      logo.src = safeUrl(logoUrl);
+      logo.alt = "Grupo de Pesquisa Horizonte";
+      credits.append(logo);
+    }
+    const creditText = el("div");
+    const developed = el("p");
+    developed.append("Desenvolvido pelo ");
+    developed.append(el("strong", "professor Dr. Glauber Santiago"));
+    developed.append(" — DAC/UFSCar");
+    const support = el("p", "Apoio: ");
+    const horizon = el(
+      "a",
+      "Grupo de Pesquisa Horizonte ↗",
+    ) as HTMLAnchorElement;
+    horizon.href = "https://grupohorizonte.ufscar.br/";
+    horizon.target = "_blank";
+    horizon.rel = "noopener noreferrer";
+    const website = el("a", "🌐 Website do Docente ↗") as HTMLAnchorElement;
+    website.href = "https://servidores.ufscar.br/glauber/";
+    website.target = "_blank";
+    website.rel = "noopener noreferrer";
+    support.append(horizon, " • ", website);
+    creditText.append(developed, support);
+    credits.append(creditText);
+    root.append(credits);
   }
   render();
   save();
 }
 export const runtimeCSS =
-  `*{box-sizing:border-box}body{margin:0;background:#f5f6f3;color:#203c34;font:16px/1.7 system-ui,sans-serif}#course{max-width:1100px;margin:auto;padding:40px}header{padding:35px 40px;background:#183e36;color:white;border-radius:18px}h1{font-size:32px;line-height:1.2}h2{font-size:23px;line-height:1.4}h3{font-size:18px}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:700}.muted,small{color:#63746c}nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}button{font:inherit;font-size:14px;border:1px solid #cbd7cf;background:white;color:#224f3c;border-radius:7px;padding:10px 18px;cursor:pointer}button:hover,button[aria-current]{background:#e4efe8}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d99822;outline-offset:3px}.block{background:white;border:1px solid #e3e7e1;border-radius:12px;padding:30px;margin:20px 0}.hero{background:#e9efdc}label{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #dbe3dc;padding:14px;margin:8px 0;border-radius:8px}input,select,textarea{font:inherit;padding:10px;border:1px solid #bccbc1;border-radius:6px}textarea{width:100%}img,video{max-width:100%;border-radius:8px}audio,iframe{width:100%}iframe{border:1px solid #ddd}.flashcard{padding:36px;min-height:160px;width:46%;margin:2%;background:#eef1e4;font-size:19px}.timeline{border-left:3px solid #769c86}.timeline li{padding:12px 20px}.hotspot{position:relative}.hotspot button{position:absolute;transform:translate(-50%,-50%);border-radius:50%;background:#216a55;color:white}table{width:100%;border-collapse:collapse}td,th{border:1px solid #ddd;padding:10px;text-align:left}blockquote{border-left:4px solid #b9cb80;padding-left:24px;font-size:22px}pre{overflow:auto;background:#152f29;color:#e6f3e9;padding:24px}progress{width:100%;accent-color:#b9cb80}.feedback{background:#f0f4e9;padding:12px}.message{font-size:13px;color:#73551e}.order-row{padding:12px;border:1px solid #ccd;margin:7px;display:flex;gap:12px;align-items:center}.order-row button:first-of-type{margin-left:auto}.formula{font:italic 26px Georgia}.certificate{text-align:center;padding:80px;border:8px double #235c42}@media(max-width:650px){#course{padding:16px}header,.block{padding:22px}.flashcard{width:96%}}@media print{body *{visibility:hidden}.certificate,.certificate *{visibility:visible}.certificate{position:absolute;inset:0}}` +
+  `*{box-sizing:border-box}body{margin:0;background:#f5f6f3;color:#203c34;font:16px/1.7 system-ui,sans-serif}#course{max-width:1100px;margin:auto;padding:40px}header{padding:35px 40px;background:#183e36;color:white;border-radius:18px}h1{font-size:32px;line-height:1.2}h2{font-size:23px;line-height:1.4}h3{font-size:18px}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:700}.muted,small{color:#63746c}nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}button{font:inherit;font-size:14px;border:1px solid #cbd7cf;background:white;color:#224f3c;border-radius:7px;padding:10px 18px;cursor:pointer}button:hover,button[aria-current]{background:#e4efe8}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d99822;outline-offset:3px}.block{background:white;border:1px solid #e3e7e1;border-radius:12px;padding:30px;margin:20px 0}.hero{background:#e9efdc}label{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #dbe3dc;padding:14px;margin:8px 0;border-radius:8px}input,select,textarea{font:inherit;padding:10px;border:1px solid #bccbc1;border-radius:6px}textarea{width:100%}img,video{max-width:100%;border-radius:8px}audio,iframe{width:100%}iframe{border:1px solid #ddd}.flashcard{padding:36px;min-height:160px;width:46%;margin:2%;background:#eef1e4;font-size:19px}.timeline{border-left:3px solid #769c86}.timeline li{padding:12px 20px}.hotspot{position:relative}.hotspot button{position:absolute;transform:translate(-50%,-50%);border-radius:50%;background:#216a55;color:white}table{width:100%;border-collapse:collapse}td,th{border:1px solid #ddd;padding:10px;text-align:left}blockquote{border-left:4px solid #b9cb80;padding-left:24px;font-size:22px}pre{overflow:auto;background:#152f29;color:#e6f3e9;padding:24px}progress{width:100%;accent-color:#b9cb80}.feedback{background:#f0f4e9;padding:12px}.message{font-size:13px;color:#73551e}.order-row{padding:12px;border:1px solid #ccd;margin:7px;display:flex;gap:12px;align-items:center}.order-row button:first-of-type{margin-left:auto}.formula{font:italic 26px Georgia}.speech-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 24px}.player-credits{display:flex;align-items:center;gap:22px;margin-top:34px;padding:24px;border-top:1px solid #d7cec7;font-size:13px}.player-credits img{width:210px;max-height:72px;object-fit:contain}.player-credits p{margin:3px 0}.player-credits a{color:inherit;font-weight:600}.certificate{text-align:center;padding:80px;border:8px double #235c42}@media(max-width:650px){#course{padding:16px}header,.block{padding:22px}.flashcard{width:96%}.player-credits{align-items:flex-start;flex-direction:column}.player-credits img{width:180px}}@media print{body *{visibility:hidden}.certificate,.certificate *{visibility:visible}.certificate{position:absolute;inset:0}}` +
   playerBrandCSS;

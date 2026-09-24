@@ -4,6 +4,8 @@ import type { Course } from "../domain/model";
 import { courseRuntime, runtimeCSS } from "./runtime";
 import { mathMarkup } from "../domain/math";
 import { fontLinks } from "./branding";
+import horizonteLogo from "../../logo-horizonte.png?inline";
+export { horizonteLogo };
 export const xml = (s: string) =>
   s.replace(
     /[<>&"']/g,
@@ -39,7 +41,7 @@ const json = (v: unknown) =>
     .replace(/\u2028/g, "\\u2028")
     .replace(/\u2029/g, "\\u2029");
 export function previewHTML(c: Course) {
-  return `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${fontLinks}<style>${runtimeCSS}</style><title>Prévia do curso</title><div id="course"></div><script>(${courseRuntime.toString()})(${json(cleanCourse(c))},'1.2',true)</script></html>`;
+  return `<!doctype html><html lang="${xml(c.language)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${fontLinks}<style>${runtimeCSS}</style><title>Prévia do curso</title><div id="course"></div><script>(${courseRuntime.toString()})(${json(cleanCourse(c))},'1.2',true,${json(horizonteLogo)})</script></html>`;
 }
 export async function exportCourse(course: Course, version: "1.2" | "2004") {
   const c = cleanCourse(course);
@@ -69,13 +71,18 @@ export async function exportCourse(course: Course, version: "1.2" | "2004") {
   zip.file("data/course.json", JSON.stringify(c, null, 2));
   zip.file("data/course.js", "window.COURSE=" + json(c) + ";");
   zip.file("css/player.css", runtimeCSS);
+  const logoData = horizonteLogo.match(/^data:image\/png;base64,(.+)$/)?.[1];
+  if (logoData)
+    zip.file("media/logo-horizonte.png", logoData, { base64: true });
   zip.file(
     "js/player.js",
-    `(${courseRuntime.toString()})(window.COURSE,${json(version)},false);`,
+    `(${courseRuntime.toString()})(window.COURSE,${json(version)},false,'media/logo-horizonte.png');`,
   );
   zip.file(
     "index.html",
-    '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<!doctype html><html lang="' +
+      xml(c.language) +
+      '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
       fontLinks +
       "<title>" +
       xml(c.title) +

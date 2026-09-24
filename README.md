@@ -21,7 +21,7 @@ npm run preview
 
 ## Fluxo de autoria
 
-1. Use o curso de exemplo carregado no primeiro acesso, crie um curso ou aplique um dos quatro templates pedagógicos.
+1. Use o curso de exemplo carregado no primeiro acesso, crie um curso ou aplique um dos seis templates pedagógicos completos.
 2. Edite módulos e páginas na esquerda. Arraste páginas para reorganizar; menus oferecem duplicação, exclusão e movimentação entre módulos.
 3. Adicione blocos e personalize no painel direito. Há desfazer/refazer, backups JSON e prévia interativa.
 4. Configure gabaritos e tentativas, mídias, conquistas e desafios. Corrija as pendências indicadas na exportação.
@@ -31,6 +31,8 @@ npm run preview
 
 - Conteúdo: texto rico, títulos/subtítulos, imagens, vídeo MP4/YouTube/Vimeo, áudio, PDF, links, código, fórmulas MathML, tabelas e citações.
 - Quiz com correção automática: escolha única, múltiplas respostas, verdadeiro/falso, associação com arrastar/selecionar, ordenação e completar lacunas.
+- Templates: leitura com questões variadas, lição ramificada, curso completo, questão única, interativo essencial e missão lúdica.
+- Leitura em voz alta pelo navegador, respeitando o idioma configurado no curso.
 - Interação: flashcards, hotspots posicionáveis, timeline, ordenação, associação e cenários com decisões e destinos.
 - Mídias: legendas WebVTT, percentual de reprodução, perguntas temporizadas, anotações e marcações de PDF por página. Players externos dependem de disponibilidade, cookies e políticas do provedor; possuem alternativa de abertura externa e confirmação manual.
 - Gamificação: XP, níveis, badges e desafios por módulo; visão do aluno e certificado imprimível.

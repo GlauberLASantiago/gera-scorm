@@ -800,6 +800,28 @@ blockquote cite {
   font-size: 7px;
   letter-spacing: 1px;
 }
+.studio-credits {
+  justify-content: flex-start;
+  text-align: left;
+  gap: 20px;
+  border-top: 1px solid #d7cec7;
+}
+.studio-credits img {
+  width: 190px;
+  max-height: 62px;
+  object-fit: contain;
+}
+.studio-credits p {
+  margin: 3px 0;
+  font-size: 9px;
+}
+.studio-credits a {
+  color: #464d4a;
+  text-decoration: none;
+}
+.studio-credits a:hover {
+  text-decoration: underline;
+}
 .bottom-bar {
   height: 29px;
   border-top: 1px solid #d7cec7;
@@ -1372,6 +1394,11 @@ summary::-webkit-details-marker {
 .template-grid p {
   font-size: 10px;
   color: #464d4a;
+}
+.template-journey {
+  color: #464d4a;
+  font-size: 9px;
+  line-height: 1.5;
 }
 .template-grid strong {
   font-size: 10px;

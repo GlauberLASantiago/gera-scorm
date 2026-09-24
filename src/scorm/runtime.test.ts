@@ -33,6 +33,8 @@ afterEach(() => {
   vi.unstubAllGlobals();
   delete (window as any).API;
   delete (window as any).API_1484_11;
+  delete (window as any).speechSynthesis;
+  delete (window as any).SpeechSynthesisUtterance;
 });
 const button = (text: string) =>
   Array.from(document.querySelectorAll("button")).find((b) =>
@@ -119,5 +121,27 @@ describe("SCORM runtime", () => {
       .dispatchEvent(new Event("submit", { cancelable: true }));
     expect(JSON.parse(data["cmi.suspend_data"]).attempts[0].score).toBe(100);
     expect(data["cmi.interactions.0.result"]).toBe("correct");
+  });
+  it("reads the page aloud using the configured course language", () => {
+    const c = createCourse();
+    c.language = "es-ES";
+    const speak = vi.fn();
+    (window as any).speechSynthesis = {
+      cancel: vi.fn(),
+      speak,
+      getVoices: () => [{ lang: "es-ES", name: "Test voice" }],
+    };
+    (window as any).SpeechSynthesisUtterance = class {
+      text: string;
+      lang = "";
+      voice = null;
+      constructor(text: string) {
+        this.text = text;
+      }
+    };
+    courseRuntime(c, "1.2");
+    button("Ouvir esta página").click();
+    expect(speak).toHaveBeenCalledOnce();
+    expect(speak.mock.calls[0][0].lang).toBe("es-ES");
   });
 });
