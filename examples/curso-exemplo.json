@@ -1,0 +1,272 @@
+{
+  "id": "011b021d-9029-4a45-9cbb-09be5cfb4ff7",
+  "schemaVersion": 1,
+  "title": "Aprendizagem que transforma",
+  "description": "Estratégias ativas para criar experiências educacionais significativas.",
+  "author": "Equipe pedagógica",
+  "updatedAt": "2026-09-23T14:43:45.153Z",
+  "modules": [
+    {
+      "id": "7ff43ea2-7516-4f6b-843a-1b66dc2cb697",
+      "title": "Fundamentos da aprendizagem",
+      "pages": [
+        {
+          "id": "2c349c05-f18d-4cb0-9159-be197ba21098",
+          "title": "Uma nova forma de aprender",
+          "kind": "page",
+          "blocks": [
+            {
+              "id": "59497f43-56dd-4d3b-8b5d-29d0e7d692f8",
+              "type": "heading",
+              "title": "O conhecimento ganha vida quando fazemos parte dele.",
+              "body": "Bem-vindo à sua jornada de aprendizagem ativa.",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "68aedb09-7728-4a4f-95ec-5ab06f900f27",
+                  "title": "Conceito A",
+                  "detail": "Explicação A"
+                },
+                {
+                  "id": "38dc04c0-db7e-42b2-9d18-408cbcb8d613",
+                  "title": "Conceito B",
+                  "detail": "Explicação B"
+                }
+              ],
+              "questionType": "single",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            },
+            {
+              "id": "eb9f6c50-d2e9-437e-ac74-59b042eb6327",
+              "type": "text",
+              "title": "Aprender é construir conexões",
+              "body": "<p>Uma experiência significativa começa com uma boa pergunta. Nesta jornada, você vai explorar como transformar informação em <strong>conhecimento aplicado</strong>.</p><p>Observe, experimente e reflita. Cada atividade é um convite para participar.</p>",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "f2e60d26-4085-4e08-9676-f0a8ed60eeec",
+                  "title": "Conceito A",
+                  "detail": "Explicação A"
+                },
+                {
+                  "id": "8f7a4ecc-7613-4ca1-8af6-5df75a6e4dbd",
+                  "title": "Conceito B",
+                  "detail": "Explicação B"
+                }
+              ],
+              "questionType": "single",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            },
+            {
+              "id": "013a7baf-164c-42c6-af79-bcc033cf8630",
+              "type": "quote",
+              "title": "Paulo Freire",
+              "body": "Ensinar não é transferir conhecimento, mas criar as possibilidades para a sua própria produção ou a sua construção.",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "b0c884cc-345d-42d4-9e1f-5d54836c713d",
+                  "title": "Conceito A",
+                  "detail": "Explicação A"
+                },
+                {
+                  "id": "7f8f4b27-9801-47d5-9323-73cf04021ea2",
+                  "title": "Conceito B",
+                  "detail": "Explicação B"
+                }
+              ],
+              "questionType": "single",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            }
+          ]
+        },
+        {
+          "id": "293f5455-d0a1-4b74-9f47-ba84ed125e44",
+          "title": "Explore os conceitos",
+          "kind": "activity",
+          "blocks": [
+            {
+              "id": "92de2588-0ba5-4c5e-8227-f921dc106694",
+              "type": "flashcards",
+              "title": "Conheça os princípios",
+              "body": "",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "3a140ab7-e786-4f63-b00f-7c52934baf85",
+                  "title": "Protagonismo",
+                  "detail": "O aluno participa ativamente da construção do conhecimento."
+                },
+                {
+                  "id": "9b25fc43-a8ae-4190-86e1-dfc9f9a64946",
+                  "title": "Reflexão",
+                  "detail": "A experiência se transforma em aprendizagem pela reflexão."
+                }
+              ],
+              "questionType": "single",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            }
+          ]
+        },
+        {
+          "id": "22cd1d46-1bec-4fd1-9f44-d344329c06a3",
+          "title": "Coloque em prática",
+          "kind": "assessment",
+          "blocks": [
+            {
+              "id": "f064d1ae-ffc6-4fb5-b69e-2bb714eac9a7",
+              "type": "quiz",
+              "title": "Qual proposta favorece a aprendizagem ativa?",
+              "body": "",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "10c4fdcd-5ad9-4f78-92dd-2d6079d6a26c",
+                  "title": "Resolver um problema em grupo e discutir as soluções",
+                  "detail": ""
+                },
+                {
+                  "id": "ff3fa2a6-acf7-45bc-8776-8d255ea7ab2a",
+                  "title": "Copiar definições sem discuti-las",
+                  "detail": ""
+                },
+                {
+                  "id": "b63be06e-9b15-4941-ac76-ac06027f6526",
+                  "title": "Ouvir uma exposição sem participar",
+                  "detail": ""
+                }
+              ],
+              "questionType": "single",
+              "correct": [
+                "10c4fdcd-5ad9-4f78-92dd-2d6079d6a26c"
+              ],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2b3b9745-8a67-4210-b808-8e0d4de81049",
+      "title": "Da teoria à prática",
+      "pages": [
+        {
+          "id": "c5fc6f14-b90c-4c3e-9807-62f1b33581f6",
+          "title": "Seu próximo desafio",
+          "kind": "page",
+          "blocks": [
+            {
+              "id": "85b3e746-519e-4d7a-8876-3efcf3cec036",
+              "type": "text",
+              "title": "Uma pequena mudança, um grande impacto",
+              "body": "Escolha uma aula que você já ministra. Como seus alunos poderiam participar mais ativamente? Registre uma mudança concreta.",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "cc3d63d2-f47e-4368-94a2-bb0aeb365745",
+                  "title": "Conceito A",
+                  "detail": "Explicação A"
+                },
+                {
+                  "id": "660b4a0f-8084-4b76-810e-03ca04abf3ef",
+                  "title": "Conceito B",
+                  "detail": "Explicação B"
+                }
+              ],
+              "questionType": "single",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            },
+            {
+              "id": "33926a39-54e3-469a-8e1a-0487ce9af8f4",
+              "type": "quiz",
+              "title": "Seu plano de aplicação",
+              "body": "",
+              "url": "",
+              "alt": "",
+              "items": [
+                {
+                  "id": "9c687fb8-f720-41c9-8712-171e88ad6a12",
+                  "title": "Conceito A",
+                  "detail": "Explicação A"
+                },
+                {
+                  "id": "7b4cf575-a789-4695-82c6-b143e5c8e6d1",
+                  "title": "Conceito B",
+                  "detail": "Explicação B"
+                }
+              ],
+              "questionType": "open",
+              "correct": [],
+              "attempts": 3,
+              "passScore": 70,
+              "weight": 1,
+              "feedback": "Revise o conteúdo e observe os conceitos apresentados.",
+              "timeLimit": 0,
+              "required": true,
+              "watchedPercent": 80
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "passScore": 70,
+  "accent": "#216a55",
+  "certificate": true,
+  "badges": [
+    {
+      "id": "f66f05f8-f52b-4f7d-afcf-634088e6d36f",
+      "name": "Explorador",
+      "description": "Conclua sua primeira página",
+      "image": "",
+      "threshold": 1
+    }
+  ]
+}
