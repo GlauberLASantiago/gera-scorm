@@ -87,6 +87,43 @@ describe("SCORM runtime", () => {
     expect(document.querySelector("main h1")?.textContent).toBe("Segunda");
     expect(document.body.textContent).toContain("50% concluído");
   });
+  it("discards stale Moodle progress when a package is replaced", () => {
+    const c = createCourse();
+    c.modules[0].pages.push(
+      newPage("Segunda"),
+      newPage("Terceira"),
+      newPage("Quarta"),
+    );
+    const currentIds = c.modules[0].pages.map((page) => page.id);
+    data["cmi.suspend_data"] = JSON.stringify({
+      completed: [
+        ...currentIds,
+        "pagina-antiga-1",
+        "pagina-antiga-2",
+        "pagina-antiga-3",
+      ],
+      attempts: [
+        {
+          blockId: "atividade-antiga",
+          answer: ["x"],
+          score: 100,
+          time: 1,
+          date: "",
+        },
+      ],
+      seconds: 120,
+      location: "pagina-antiga-3",
+    });
+
+    courseRuntime(c, "1.2");
+
+    expect(document.body.textContent).toContain("100% concluído");
+    expect(document.body.textContent).toContain("4/4 páginas");
+    expect(document.body.textContent).not.toContain("175% concluído");
+    expect(document.querySelector("main h1")?.textContent).toBe("Boas-vindas");
+    expect(JSON.parse(data["cmi.suspend_data"]).completed).toEqual(currentIds);
+    expect(JSON.parse(data["cmi.suspend_data"]).attempts).toEqual([]);
+  });
   it("uses SCORM 2004 fields and methods", () => {
     delete (window as any).API;
     const a = {

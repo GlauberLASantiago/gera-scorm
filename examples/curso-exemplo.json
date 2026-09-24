@@ -1,23 +1,23 @@
 {
-  "id": "5cd65826-517c-401f-a486-7cde172a2465",
+  "id": "276e6458-922f-49e8-b0b6-815dcfc28e37",
   "schemaVersion": 1,
   "title": "Aprendizagem que transforma",
   "description": "Estratégias ativas para criar experiências educacionais significativas.",
   "author": "Equipe pedagógica",
   "language": "pt-BR",
-  "updatedAt": "2026-09-24T02:54:32.494Z",
+  "updatedAt": "2026-09-24T03:13:32.743Z",
   "modules": [
     {
-      "id": "f53e3a1f-2659-4b6a-a00d-bcd8e496bfd4",
+      "id": "95eaa1ad-23aa-4ace-bfaf-5d51fc96d6db",
       "title": "Fundamentos da aprendizagem",
       "pages": [
         {
-          "id": "b2afe6c6-c227-4acd-ba6f-db9ff4cda6a2",
+          "id": "36a240b5-d5ed-4f72-bfad-6d20e667c5c2",
           "title": "Uma nova forma de aprender",
           "kind": "page",
           "blocks": [
             {
-              "id": "83b052a1-6684-44d8-92b4-7a2466e4acae",
+              "id": "908e1a22-013f-4bca-a915-1466db611809",
               "type": "heading",
               "title": "O conhecimento ganha vida quando fazemos parte dele.",
               "body": "Bem-vindo à sua jornada de aprendizagem ativa.",
@@ -25,12 +25,12 @@
               "alt": "",
               "items": [
                 {
-                  "id": "dcc2cf2e-6bec-47e1-bce5-bf1c6a1dc07f",
+                  "id": "ee73a8bb-750e-4d56-910d-742bc82ef841",
                   "title": "Conceito A",
                   "detail": "Explicação A"
                 },
                 {
-                  "id": "58a62bff-e2ca-471f-b5af-c6fce5d5fa3f",
+                  "id": "a09f0a8f-5f0a-4782-a035-2701e8775217",
                   "title": "Conceito B",
                   "detail": "Explicação B"
                 }
@@ -46,7 +46,7 @@
               "watchedPercent": 80
             },
             {
-              "id": "a458c322-18c5-4553-9be1-ba87244721f5",
+              "id": "251bfa1d-e474-45d4-9a84-e0f28d0f9201",
               "type": "text",
               "title": "Aprender é construir conexões",
               "body": "<p>Uma experiência significativa começa com uma boa pergunta. Nesta jornada, você vai explorar como transformar informação em <strong>conhecimento aplicado</strong>.</p><p>Observe, experimente e reflita. Cada atividade é um convite para participar.</p>",
@@ -54,12 +54,12 @@
               "alt": "",
               "items": [
                 {
-                  "id": "b34f1061-4379-4fb6-bcea-66a8352cba5d",
+                  "id": "b4e17891-d46e-4a01-bb85-5e5e3dbf9308",
                   "title": "Conceito A",
                   "detail": "Explicação A"
                 },
                 {
-                  "id": "c375f093-6ce0-407e-8e87-848d29cea6c1",
+                  "id": "f5ba595b-c87e-49a0-a4f1-1228db4b51c0",
                   "title": "Conceito B",
                   "detail": "Explicação B"
                 }
@@ -75,7 +75,7 @@
               "watchedPercent": 80
             },
             {
-              "id": "bcdfbbe7-52e8-4916-bcdc-4811b0ba2220",
+              "id": "f922e8fc-1032-4595-ac03-7109b4e63d33",
               "type": "quote",
               "title": "Paulo Freire",
               "body": "Ensinar não é transferir conhecimento, mas criar as possibilidades para a sua própria produção ou a sua construção.",
@@ -83,12 +83,12 @@
               "alt": "",
               "items": [
                 {
-                  "id": "be31728f-9c41-4642-afee-2ef44fd6d5db",
+                  "id": "2412133b-7a87-4393-aed2-8878587e4419",
                   "title": "Conceito A",
                   "detail": "Explicação A"
                 },
                 {
-                  "id": "8c1ccf7a-847f-48c2-8da2-497ca9614625",
+                  "id": "b899a7c0-0285-42ae-a4d7-cfda80326686",
                   "title": "Conceito B",
                   "detail": "Explicação B"
                 }
@@ -106,12 +106,12 @@
           ]
         },
         {
-          "id": "b1c81e62-4e6a-4a8f-bd2f-abc40bfff130",
+          "id": "5dbb1a34-0ca4-4fa1-aade-e9f869760070",
           "title": "Explore os conceitos",
           "kind": "activity",
           "blocks": [
             {
-              "id": "740f7f62-4ee1-4e5e-aa68-a415cfe46a95",
+              "id": "b8421373-ea70-4a1a-becf-e270dfdc98f2",
               "type": "flashcards",
               "title": "Conheça os princípios",
               "body": "",
@@ -119,12 +119,12 @@
               "alt": "",
               "items": [
                 {
-                  "id": "00f95d59-58f8-4291-ac6c-bb6ad2b992e8",
+                  "id": "c0b3cbc7-1ac9-42f3-acdd-a6fe8d498ced",
                   "title": "Protagonismo",
                   "detail": "O aluno participa ativamente da construção do conhecimento."
                 },
                 {
-                  "id": "6f54c81e-f3c8-4107-beac-52759fb1777a",
+                  "id": "08cd7231-2133-4b08-9c6c-8e45e5a269ca",
                   "title": "Reflexão",
                   "detail": "A experiência se transforma em aprendizagem pela reflexão."
                 }
@@ -142,12 +142,12 @@
           ]
         },
         {
-          "id": "a40b2834-6a1d-4481-a5f9-0adce34cbba2",
+          "id": "941440dd-8c5a-4b2c-9d85-9fedc8677ebb",
           "title": "Coloque em prática",
           "kind": "assessment",
           "blocks": [
             {
-              "id": "2d367591-8837-40df-9cd7-6857a1366b92",
+              "id": "6a58d689-e723-4b3e-9aba-5de57d5e4c88",
               "type": "quiz",
               "title": "Qual proposta favorece a aprendizagem ativa?",
               "body": "",
@@ -155,23 +155,23 @@
               "alt": "",
               "items": [
                 {
-                  "id": "74780b98-d4b2-4f9d-a58e-4b01866d6f31",
+                  "id": "9924f8f8-2bf4-499a-a4e9-ee1cba7a253d",
                   "title": "Resolver um problema em grupo e discutir as soluções",
                   "detail": ""
                 },
                 {
-                  "id": "3328b887-7624-46d1-a3ca-fcf962e2b37e",
+                  "id": "2de12c4f-b18d-47ae-be88-704f4fc0dcc9",
                   "title": "Copiar definições sem discuti-las",
                   "detail": ""
                 },
                 {
-                  "id": "9d1d57e9-4e93-408a-9d2a-764ae0c06910",
+                  "id": "5d9d4d96-c4c2-48f2-b183-768a1bef8f33",
                   "title": "Ouvir uma exposição sem participar",
                   "detail": ""
                 }
               ],
               "questionType": "single",
-              "correct": ["74780b98-d4b2-4f9d-a58e-4b01866d6f31"],
+              "correct": ["9924f8f8-2bf4-499a-a4e9-ee1cba7a253d"],
               "attempts": 3,
               "passScore": 70,
               "weight": 1,
@@ -185,16 +185,16 @@
       ]
     },
     {
-      "id": "cb37285c-d508-4476-aadd-5e8860dc01ce",
+      "id": "0a18d183-bfb7-4f9c-bb22-e743f1e3c782",
       "title": "Da teoria à prática",
       "pages": [
         {
-          "id": "b12bee20-4e4b-4474-844e-ea28e8ac23f7",
+          "id": "3e8bb8cc-ab1b-4bd6-9701-a26a1fd7184f",
           "title": "Seu próximo desafio",
           "kind": "page",
           "blocks": [
             {
-              "id": "a56d40e8-1ea4-4492-a5fd-db4a2a20c09f",
+              "id": "d994b442-85ca-4616-8b0e-130d0c9bb8f4",
               "type": "text",
               "title": "Uma pequena mudança, um grande impacto",
               "body": "Escolha uma aula que você já ministra. Como seus alunos poderiam participar mais ativamente? Registre uma mudança concreta.",
@@ -202,12 +202,12 @@
               "alt": "",
               "items": [
                 {
-                  "id": "944704df-447b-4e9a-9f71-d1bbe2c1ee70",
+                  "id": "5c94e907-3cfb-44b7-b48a-c83ee39f4152",
                   "title": "Conceito A",
                   "detail": "Explicação A"
                 },
                 {
-                  "id": "077fc3d9-d1bd-44e5-b6ec-2695fae6d81c",
+                  "id": "cb7ab23a-5cdb-4e94-82a0-2311b188c60e",
                   "title": "Conceito B",
                   "detail": "Explicação B"
                 }
@@ -223,7 +223,7 @@
               "watchedPercent": 80
             },
             {
-              "id": "50b9ec73-d97b-4a59-a7f4-e343621fda4b",
+              "id": "c8e766ea-1cac-40b0-9a2c-89b81e70b9ea",
               "type": "quiz",
               "title": "Qual ação representa um plano de aplicação concreto?",
               "body": "",
@@ -261,7 +261,7 @@
   "certificate": true,
   "badges": [
     {
-      "id": "956ccd53-dfe1-461d-9cea-775abc45c329",
+      "id": "53d48deb-34ba-4201-b00d-e128e1889a2d",
       "name": "Explorador",
       "description": "Conclua sua primeira página",
       "image": "",

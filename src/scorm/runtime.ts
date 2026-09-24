@@ -28,6 +28,7 @@ export function courseRuntime(
   let pageIndex = 0;
   let key = (preview ? "scorm-preview-" : "scorm-progress-") + course.id;
   let state: any = {
+    courseId: course.id,
     completed: [],
     attempts: [],
     seconds: 0,
@@ -99,7 +100,8 @@ export function courseRuntime(
       : localStorage.getItem(key);
     if (saved) {
       const p = JSON.parse(saved);
-      if (p.v === 2) {
+      const belongsToCourse = !p.courseId || p.courseId === course.id;
+      if (belongsToCourse && p.v === 2) {
         state.completed = p.c.map((i: number) => pages[i]?.id).filter(Boolean);
         state.location = pages[p.l]?.id || "";
         state.seconds = p.s;
@@ -123,16 +125,63 @@ export function courseRuntime(
             })),
         );
       }
-      if (Array.isArray(p.completed) && Array.isArray(p.attempts))
+      if (
+        belongsToCourse &&
+        Array.isArray(p.completed) &&
+        Array.isArray(p.attempts)
+      )
         state = { ...state, ...p };
     }
   } catch {}
+  // Moodle preserves suspend_data when a package is updated. Remove IDs from
+  // older packages and duplicates before calculating progress, score or XP.
+  const pageIds = new Set(pages.map((p: any) => p.id));
+  const blockIds = new Set(allBlocks.map((b: any) => b.id));
+  const answerIds = new Set(
+    allBlocks.flatMap((b: any) => [
+      b.id,
+      b.id + "-marks",
+      ...(b.cues || []).map((cue: any) => cue.id),
+    ]),
+  );
+  state.courseId = course.id;
+  state.completed = [
+    ...new Set(
+      (Array.isArray(state.completed) ? state.completed : []).filter(
+        (id: any) => typeof id === "string" && pageIds.has(id),
+      ),
+    ),
+  ];
+  state.attempts = (Array.isArray(state.attempts) ? state.attempts : []).filter(
+    (attempt: any) =>
+      attempt &&
+      blockIds.has(attempt.blockId) &&
+      (attempt.score === null || Number.isFinite(attempt.score)),
+  );
+  state.watched = Object.fromEntries(
+    Object.entries(state.watched || {}).filter(
+      ([id, value]) => blockIds.has(id) && Number.isFinite(value),
+    ),
+  );
+  state.coverage = Object.fromEntries(
+    Object.entries(state.coverage || {}).filter(
+      ([id, value]) => blockIds.has(id) && Array.isArray(value),
+    ),
+  );
+  state.answers = Object.fromEntries(
+    Object.entries(state.answers || {}).filter(([id]) => answerIds.has(id)),
+  );
+  state.seconds = Math.max(0, Number(state.seconds) || 0);
+  if (!pageIds.has(state.location)) state.location = pages[0]?.id || "";
   const sessionBase = Number(state.seconds) || 0;
   pageIndex = Math.max(
     0,
     pages.findIndex((p: any) => p.id === state.location),
   );
   function stats() {
+    const completedPages = pages.filter((p: any) =>
+      state.completed.includes(p.id),
+    );
     const latest = new Map<string, any>();
     state.attempts.forEach((a: any) => {
       if (a.score !== null) latest.set(a.blockId, a);
@@ -140,10 +189,9 @@ export function courseRuntime(
     let total = 0,
       weights = 0;
     latest.forEach((a: any) => {
-      const b = pages
-        .flatMap((p: any) => p.blocks)
-        .find((b: any) => b.id === a.blockId);
-      const w = b?.weight || 1;
+      const b = allBlocks.find((b: any) => b.id === a.blockId);
+      if (!b) return;
+      const w = b.weight || 1;
       total += a.score * w;
       weights += w;
     });
@@ -156,12 +204,9 @@ export function courseRuntime(
       );
     });
     const xp =
-      state.completed.reduce(
-        (n: number, id: string) =>
-          n +
-          (pages.find((p: any) => p.id === id)?.kind === "activity"
-            ? game.activityXP
-            : game.readingXP),
+      completedPages.reduce(
+        (n: number, page: any) =>
+          n + (page.kind === "activity" ? game.activityXP : game.readingXP),
         0,
       ) +
       [...latest.values()].filter(
@@ -180,7 +225,10 @@ export function courseRuntime(
       xp,
       level,
       challenges,
-      progress: pages.length ? state.completed.length / pages.length : 0,
+      completedCount: completedPages.length,
+      progress: pages.length
+        ? Math.min(1, completedPages.length / pages.length)
+        : 0,
       graded: weights > 0,
     };
   }
@@ -251,6 +299,7 @@ export function courseRuntime(
       .filter(Boolean);
     const compact = JSON.stringify({
       v: 2,
+      courseId: course.id,
       c: state.completed.map((id: string) =>
         pages.findIndex((p: any) => p.id === id),
       ),
@@ -1072,11 +1121,11 @@ export function courseRuntime(
       meter,
       el(
         "p",
-        `${Math.round(s.progress * 100)}% concluído · ${s.xp} XP · ${s.level} · Nota ${s.score}% · ${Math.floor(state.seconds / 60)} min · ${state.completed.length}/${pages.length} páginas`,
+        `${Math.round(s.progress * 100)}% concluído · ${s.xp} XP · ${s.level} · Nota ${s.score}% · ${Math.floor(state.seconds / 60)} min · ${s.completedCount}/${pages.length} páginas`,
       ),
     );
     const badges = course.badges.filter(
-      (b: any) => state.completed.length >= b.threshold,
+      (b: any) => s.completedCount >= b.threshold,
     );
     top.append(el("p", badges.map((b: any) => "🏅 " + b.name).join(" · ")));
     badges
