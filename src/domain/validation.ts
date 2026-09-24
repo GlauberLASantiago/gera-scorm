@@ -1,6 +1,6 @@
 import { labels, type Course } from "./model";
 export function validateCourse(input: unknown): Course {
-  const c = input as Course;
+  const c = structuredClone(input) as Course;
   if (
     !c ||
     c.schemaVersion !== 1 ||
@@ -31,9 +31,23 @@ export function validateCourse(input: unknown): Course {
       if (typeof p.title !== "string" || !Array.isArray(p.blocks))
         throw Error("Página inválida.");
       for (const b of p.blocks) {
+        // Cursos criados antes da remoção de respostas dissertativas são
+        // migrados para lacunas e exigem que o autor defina um gabarito.
+        if (b.type === "quiz" && (b.questionType as string) === "open") {
+          b.questionType = "fill";
+          b.correct = [];
+        }
         id(b.id);
         if (
           !Object.hasOwn(labels, b.type) ||
+          ![
+            "single",
+            "multiple",
+            "boolean",
+            "matching",
+            "ordering",
+            "fill",
+          ].includes(b.questionType) ||
           !Array.isArray(b.items) ||
           !Array.isArray(b.correct) ||
           !["title", "body", "url", "alt", "feedback"].every(

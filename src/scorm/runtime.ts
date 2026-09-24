@@ -195,8 +195,7 @@ export function courseRuntime(course: any, version: string, preview = false) {
     const hasQuestions = pages.some((p: any) =>
       p.blocks.some(
         (b: any) =>
-          (b.type === "quiz" && b.questionType !== "open") ||
-          ["ordering", "dragdrop"].includes(b.type),
+          b.type === "quiz" || ["ordering", "dragdrop"].includes(b.type),
       ),
     );
     set(
@@ -425,15 +424,7 @@ export function courseRuntime(course: any, version: string, preview = false) {
         "muted",
       ),
     );
-    if (last)
-      container.append(
-        el(
-          "p",
-          last.score === null
-            ? "Resposta registrada para reflexão. Não há correção automática."
-            : "Última nota: " + last.score + "%",
-        ),
-      );
+    if (last) container.append(el("p", "Última nota: " + last.score + "%"));
     let answer: string[] = [];
     const began = Date.now();
     const form = el("form");
@@ -548,10 +539,7 @@ export function courseRuntime(course: any, version: string, preview = false) {
       const field = document.createElement("textarea");
       field.rows = 4;
       field.setAttribute("aria-label", "Sua resposta");
-      field.placeholder =
-        b.questionType === "fill"
-          ? "Complete a lacuna"
-          : "Escreva sua reflexão";
+      field.placeholder = "Complete a lacuna";
       field.oninput = () => (answer = [field.value]);
       form.append(field);
     }
@@ -572,21 +560,18 @@ export function courseRuntime(course: any, version: string, preview = false) {
         return;
       }
       const elapsed = Math.round((Date.now() - began) / 1000);
-      let score: number | null = null;
-      if (b.questionType !== "open") {
-        const correct =
-          b.questionType === "ordering"
+      const correct =
+        b.questionType === "ordering"
+          ? b.items.map((i: any) => i.id)
+          : b.questionType === "matching"
             ? b.items.map((i: any) => i.id)
-            : b.questionType === "matching"
-              ? b.items.map((i: any) => i.id)
-              : b.correct;
-        const normalize = (s: string) => s.trim().toLowerCase();
-        const a = b.questionType === "multiple" ? [...answer].sort() : answer;
-        const c = b.questionType === "multiple" ? [...correct].sort() : correct;
-        score =
-          a.map(normalize).join("|") === c.map(normalize).join("|") ? 100 : 0;
-        if (b.timeLimit && elapsed > b.timeLimit) score = 0;
-      }
+            : b.correct;
+      const normalize = (s: string) => s.trim().toLowerCase();
+      const a = b.questionType === "multiple" ? [...answer].sort() : answer;
+      const c = b.questionType === "multiple" ? [...correct].sort() : correct;
+      let score =
+        a.map(normalize).join("|") === c.map(normalize).join("|") ? 100 : 0;
+      if (b.timeLimit && elapsed > b.timeLimit) score = 0;
       interaction(b, answer, score, elapsed);
       quizRefresh();
     };

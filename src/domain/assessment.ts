@@ -1,6 +1,5 @@
 import type { Block, Progress } from "./model";
-export function grade(b: Block, answer: string[]): number | null {
-  if (b.questionType === "open") return null;
+export function grade(b: Block, answer: string[]): number {
   if (!b.correct.length) return 0;
   const normalize = (s: string) => s.trim().toLocaleLowerCase("pt-BR");
   if (b.questionType === "multiple")

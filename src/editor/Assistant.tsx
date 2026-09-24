@@ -95,9 +95,9 @@ export function Assistant() {
       }
       for (const activity of result.activities || [])
         p.blocks.push({
-          ...newBlock("quiz"),
-          questionType: "open",
-          title: activity,
+          ...newBlock("text"),
+          title: "Atividade sugerida",
+          body: activity,
         });
     });
     setStatus(

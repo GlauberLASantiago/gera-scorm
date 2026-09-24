@@ -11,10 +11,10 @@ describe("assessment", () => {
     expect(grade(b, ["b", "a"])).toBe(100);
     expect(grade(b, ["a"])).toBe(0);
   });
-  it("never automatically grades open answers", () =>
+  it("scores an incorrect objective answer automatically", () =>
     expect(
-      grade({ ...newBlock("quiz"), questionType: "open" }, ["reflection"]),
-    ).toBeNull());
+      grade({ ...newBlock("quiz"), correct: ["correct"] }, ["incorrect"]),
+    ).toBe(0));
   it("normalizes case and surrounding whitespace in fill answers", () =>
     expect(
       grade(

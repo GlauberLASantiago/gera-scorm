@@ -18,7 +18,7 @@ export type BlockType =
   | "ordering"
   | "scenario";
 export type QuestionType =
-  "single" | "multiple" | "boolean" | "matching" | "ordering" | "fill" | "open";
+  "single" | "multiple" | "boolean" | "matching" | "ordering" | "fill";
 export interface Item {
   id: string;
   title: string;
@@ -300,8 +300,20 @@ export function exampleCourse() {
             },
             {
               ...newBlock("quiz"),
-              title: "Seu plano de aplicação",
-              questionType: "open",
+              title: "Qual ação representa um plano de aplicação concreto?",
+              items: [
+                {
+                  id: "example-action-specific",
+                  title: "Definir uma mudança observável e quando aplicá-la",
+                  detail: "",
+                },
+                {
+                  id: "example-action-vague",
+                  title: "Apenas afirmar que a aula será melhor",
+                  detail: "",
+                },
+              ],
+              correct: ["example-action-specific"],
             },
           ],
         },

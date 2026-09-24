@@ -102,18 +102,22 @@ describe("SCORM runtime", () => {
     expect(data["cmi.session_time"]).toMatch(/^PT\d+S$/);
     expect(data["cmi.objectives.0.id"]).toBe("course-mastery");
   });
-  it("never invents automatic grades for open responses", () => {
+  it("automatically grades fill-in responses", () => {
     const c = createCourse();
-    const b = { ...newBlock("quiz"), questionType: "open" };
+    const b = {
+      ...newBlock("quiz"),
+      questionType: "fill" as const,
+      correct: ["Minha resposta"],
+    };
     c.modules[0].pages[0].blocks = [b as any];
     courseRuntime(c, "1.2");
     const field = document.querySelector("textarea")!;
-    field.value = "Minha reflexão";
+    field.value = "Minha resposta";
     field.dispatchEvent(new Event("input"));
     document
       .querySelector("form")!
       .dispatchEvent(new Event("submit", { cancelable: true }));
-    expect(JSON.parse(data["cmi.suspend_data"]).attempts[0].score).toBeNull();
-    expect(data["cmi.interactions.0.result"]).toBe("neutral");
+    expect(JSON.parse(data["cmi.suspend_data"]).attempts[0].score).toBe(100);
+    expect(data["cmi.interactions.0.result"]).toBe("correct");
   });
 });

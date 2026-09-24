@@ -7,6 +7,7 @@ import {
   type Block,
 } from "../domain/model";
 import { repository } from "../storage/repository";
+import { validateCourse } from "../domain/validation";
 interface State {
   courses: Course[];
   courseId: string;
@@ -56,7 +57,7 @@ export const useStudio = create<State>((set, get) => ({
     if (initializing || get().ready) return;
     initializing = true;
     try {
-      let courses = await repository.list();
+      let courses = (await repository.list()).map(validateCourse);
       if (!courses.length) {
         courses = [exampleCourse()];
         await repository.save(courses[0]);

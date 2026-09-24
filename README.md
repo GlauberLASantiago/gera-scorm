@@ -30,7 +30,7 @@ npm run preview
 ## Recursos
 
 - Conteúdo: texto rico, títulos/subtítulos, imagens, vídeo MP4/YouTube/Vimeo, áudio, PDF, links, código, fórmulas MathML, tabelas e citações.
-- Quiz: escolha única, múltiplas respostas, verdadeiro/falso, associação com arrastar/selecionar, ordenação, lacunas e resposta aberta. Respostas abertas são registradas, sem atribuição automática de nota.
+- Quiz com correção automática: escolha única, múltiplas respostas, verdadeiro/falso, associação com arrastar/selecionar, ordenação e completar lacunas.
 - Interação: flashcards, hotspots posicionáveis, timeline, ordenação, associação e cenários com decisões e destinos.
 - Mídias: legendas WebVTT, percentual de reprodução, perguntas temporizadas, anotações e marcações de PDF por página. Players externos dependem de disponibilidade, cookies e políticas do provedor; possuem alternativa de abertura externa e confirmação manual.
 - Gamificação: XP, níveis, badges e desafios por módulo; visão do aluno e certificado imprimível.

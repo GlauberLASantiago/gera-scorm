@@ -134,10 +134,16 @@ export function BlockView({ block: b }: { block: Block }) {
             <HelpCircle size={16} /> VERIFIQUE SEU CONHECIMENTO
           </div>
           <h3>{b.title}</h3>
-          {b.questionType === "open" ? (
-            <textarea disabled placeholder="Espaço para reflexão do aluno" />
+          {b.questionType === "fill" ? (
+            <input disabled placeholder="Complete a lacuna" />
           ) : (
-            b.items.map((i) => (
+            (b.questionType === "boolean"
+              ? [
+                  { id: "true", title: "Verdadeiro" },
+                  { id: "false", title: "Falso" },
+                ]
+              : b.items
+            ).map((i) => (
               <div className="quiz-option" key={i.id}>
                 <span
                   className={b.correct.includes(i.id) ? "correct-dot" : ""}

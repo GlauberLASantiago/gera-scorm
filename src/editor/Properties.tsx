@@ -243,7 +243,6 @@ export function Properties({
                   matching: "Associação",
                   ordering: "Ordenação",
                   fill: "Completar lacunas",
-                  open: "Resposta aberta",
                 }).map(([v, t]) => (
                   <option value={v} key={v}>
                     {t}
@@ -262,8 +261,7 @@ export function Properties({
             "scenario",
           ].includes(b.type) &&
             !(
-              b.type === "quiz" &&
-              ["open", "fill", "boolean"].includes(b.questionType)
+              b.type === "quiz" && ["fill", "boolean"].includes(b.questionType)
             ) && (
               <div className="items-editor">
                 <label className="field">
