@@ -33,6 +33,7 @@ npm run preview
 - Quiz com correção automática: escolha única, múltiplas respostas, verdadeiro/falso, associação com arrastar/selecionar, ordenação e completar lacunas.
 - Templates: leitura com questões variadas, lição ramificada, curso completo, questão única, interativo essencial e missão lúdica.
 - Leitura em voz alta pelo navegador, respeitando o idioma configurado no curso.
+- Prompt Mágico: dez modelos pedagógicos prontos para copiar, cada um acompanhado automaticamente por um contrato técnico SCORM 1.2 para Moodle.
 - Interação: flashcards, hotspots posicionáveis, timeline, ordenação, associação e cenários com decisões e destinos.
 - Mídias: legendas WebVTT, percentual de reprodução, perguntas temporizadas, anotações e marcações de PDF por página. Players externos dependem de disponibilidade, cookies e políticas do provedor; possuem alternativa de abertura externa e confirmação manual.
 - Gamificação: XP, níveis, badges e desafios por módulo; visão do aluno e certificado imprimível.

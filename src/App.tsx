@@ -29,6 +29,7 @@ import {
   ChevronDown,
   Monitor,
   Smartphone,
+  WandSparkles,
 } from "lucide-react";
 import { useStudio, duplicate } from "./state/store";
 import {
@@ -45,6 +46,7 @@ import { BlockView } from "./editor/BlockView";
 import { Properties } from "./editor/Properties";
 import { Gamification } from "./editor/Gamification";
 import { Assistant } from "./editor/Assistant";
+import { MagicPrompts } from "./editor/MagicPrompts";
 import { validateCourse, publishingIssues } from "./domain/validation";
 import {
   download,
@@ -61,6 +63,7 @@ type Modal =
   | "analytics"
   | "gamification"
   | "ai"
+  | "magic"
   | null;
 export default function App() {
   const s = useStudio();
@@ -226,9 +229,15 @@ export default function App() {
         </div>
       </header>
       <nav className="workspace-nav">
-        <div className="workspace-label">
-          <span className="live-dot" />
-          ESPAÇO DE AUTORIA
+        <div className="workspace-launcher">
+          <button className="magic-entry" onClick={() => setModal("magic")}>
+            <WandSparkles size={14} />
+            Prompt Mágico
+          </button>
+          <div className="workspace-label">
+            <span className="live-dot" />
+            ESPAÇO DE AUTORIA
+          </div>
         </div>
         <button className="active">
           <PanelLeft size={16} />
@@ -723,7 +732,14 @@ export default function App() {
           }}
         >
           <section
-            className={"modal " + (modal === "preview" ? "preview-modal" : "")}
+            className={
+              "modal " +
+              (modal === "preview"
+                ? "preview-modal"
+                : modal === "magic"
+                  ? "magic-modal"
+                  : "")
+            }
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
@@ -759,6 +775,7 @@ export default function App() {
                       analytics: "Resultados da aprendizagem",
                       gamification: "Reconheça cada conquista",
                       ai: "Assistente de planejamento",
+                      magic: "Prompt Mágico",
                     }[modal]
                   }
                 </h2>
@@ -1068,6 +1085,7 @@ export default function App() {
               </div>
             )}
             {modal === "ai" && <Assistant />}
+            {modal === "magic" && <MagicPrompts />}
           </section>
         </div>
       )}
