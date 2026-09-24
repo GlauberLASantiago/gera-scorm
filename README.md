@@ -51,6 +51,10 @@ O workflow `.github/workflows/pages.yml` executa testes, build e publicação em
 
 O site é público, mas seus cursos autorais ficam no navegador. Publicar o editor não publica automaticamente os cursos que você cria nele. Exporte backups: limpeza dos dados do navegador remove o armazenamento local. O service worker conserva recursos já acessados para trabalhar offline após a primeira visita.
 
+## Identidade visual
+
+A interface usa a paleta `#D7CEC7`, `#A3A380`, `#464D4A`, `#FFFFFF` e `#BF695E`, com títulos em Syne e textos em Work Sans. O fundo ilustrado vem do repositório de estilos indicado pelo autor. As fontes Google Fonts e o fundo remoto dependem de conexão ou cache do navegador; sem conexão, permanecem as fontes sans-serif do sistema e a cor de fundo. A prévia e os novos pacotes SCORM usam a mesma tipografia e paleta, sem incluir a ilustração da interface como conteúdo do curso.
+
 ## Limites e integrações
 
 - O Pages não fornece backend, autenticação multiusuário, banco central de alunos ou armazenamento de segredos. Integrações com Moodle e provedores de IA precisam de backend autorizado.

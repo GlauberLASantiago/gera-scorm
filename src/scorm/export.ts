@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import type { Course } from "../domain/model";
 import { courseRuntime, runtimeCSS } from "./runtime";
 import { mathMarkup } from "../domain/math";
+import { fontLinks } from "./branding";
 export const xml = (s: string) =>
   s.replace(
     /[<>&"']/g,
@@ -38,7 +39,7 @@ const json = (v: unknown) =>
     .replace(/\u2028/g, "\\u2028")
     .replace(/\u2029/g, "\\u2029");
 export function previewHTML(c: Course) {
-  return `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${runtimeCSS}</style><title>Prévia do curso</title><div id="course"></div><script>(${courseRuntime.toString()})(${json(cleanCourse(c))},'1.2',true)</script></html>`;
+  return `<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${fontLinks}<style>${runtimeCSS}</style><title>Prévia do curso</title><div id="course"></div><script>(${courseRuntime.toString()})(${json(cleanCourse(c))},'1.2',true)</script></html>`;
 }
 export async function exportCourse(course: Course, version: "1.2" | "2004") {
   const c = cleanCourse(course);
@@ -74,7 +75,9 @@ export async function exportCourse(course: Course, version: "1.2" | "2004") {
   );
   zip.file(
     "index.html",
-    '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' +
+    '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+      fontLinks +
+      "<title>" +
       xml(c.title) +
       '</title><link rel="stylesheet" href="css/player.css"></head><body><div id="course"></div><script src="data/course.js"></script><script src="js/player.js"></script></body></html>',
   );

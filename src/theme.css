@@ -1,0 +1,380 @@
+/* Creative & agency identity. All surface variations derive from the five brand colors. */
+:root {
+  --color-stone: #d7cec7;
+  --color-olive: #a3a380;
+  --color-ink: #464d4a;
+  --color-white: #ffffff;
+  --color-terracotta: #bf695e;
+  --font-title: "Syne", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --surface-soft: color-mix(
+    in srgb,
+    var(--color-stone) 23%,
+    var(--color-white)
+  );
+  --surface-olive: color-mix(
+    in srgb,
+    var(--color-olive) 20%,
+    var(--color-white)
+  );
+  --surface-rose: color-mix(
+    in srgb,
+    var(--color-terracotta) 13%,
+    var(--color-white)
+  );
+  --border-soft: color-mix(in srgb, var(--color-stone) 72%, var(--color-white));
+  color: var(--color-ink);
+  background: var(--color-stone);
+  font-family: var(--font-body);
+}
+body,
+p,
+span,
+a,
+input,
+button,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+body {
+  background-color: var(--color-stone);
+  background-image:
+    linear-gradient(rgba(215, 206, 199, 0.42), rgba(215, 206, 199, 0.42)),
+    url("https://raw.githubusercontent.com/GlauberLASantiago/gl-cores-fontes-e-fundos/main/estilos_digitais/02_ilustracao_de_blog_flat_clean.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.studio,
+.workspace,
+.editor {
+  background: transparent;
+}
+.topbar {
+  background: var(--color-white);
+  border-bottom-color: var(--border-soft);
+}
+.workspace-nav,
+.editor-toolbar,
+.bottom-bar {
+  background: color-mix(in srgb, var(--color-white) 94%, transparent);
+}
+.structure {
+  background: color-mix(in srgb, var(--color-white) 94%, transparent);
+}
+.properties {
+  background: color-mix(in srgb, var(--color-white) 97%, transparent);
+}
+.brand,
+.brand span,
+.page-title-input {
+  font-family: var(--font-title);
+}
+.brand {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.brand-light {
+  font-weight: 600;
+}
+.brand-icon {
+  background: var(--color-terracotta);
+  color: var(--color-white);
+  border-radius: 12px 12px 4px 12px;
+}
+.brand small {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.primary {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-white);
+}
+.primary:hover {
+  background: var(--color-ink);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-terracotta) 30%, transparent);
+}
+.secondary {
+  background: var(--color-white);
+  border-color: var(--color-stone);
+}
+.avatar {
+  background: var(--surface-rose);
+  color: var(--color-ink);
+}
+.workspace-nav > button.active:after {
+  background: var(--color-terracotta);
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+.status-dot,
+.live-dot {
+  background: var(--color-olive);
+}
+.error-dot,
+.selected-dot {
+  background: var(--color-terracotta);
+}
+.ai-tab span {
+  background: var(--surface-rose);
+  color: var(--color-ink);
+}
+.course-cover {
+  background: var(--surface-olive);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px 12px 30px 12px;
+}
+.course-cover:after {
+  border-color: var(--color-olive);
+  box-shadow:
+    0 0 0 18px color-mix(in srgb, var(--color-olive) 13%, transparent),
+    0 0 0 38px color-mix(in srgb, var(--color-olive) 8%, transparent);
+}
+.course-cover h2 {
+  font-weight: 700;
+}
+.draft-pill {
+  background: var(--color-white);
+  border-color: var(--color-stone);
+}
+.page-item.selected {
+  background: var(--surface-rose);
+  box-shadow: inset 3px 0 var(--color-terracotta);
+}
+.page-item:hover {
+  background: var(--surface-soft);
+}
+.structure-footer {
+  background: var(--surface-soft);
+}
+.chosen {
+  background: var(--surface-olive);
+}
+.canvas-scroll {
+  background: color-mix(in srgb, var(--color-white) 30%, transparent);
+}
+.page-heading {
+  background: color-mix(in srgb, var(--color-white) 93%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 22px 25px;
+  margin-bottom: 23px;
+}
+.page-title-input {
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  font-size: clamp(18px, 1.85vw, 28px);
+}
+.editor-block {
+  border-color: var(--border-soft);
+  box-shadow: 0 5px 20px rgba(70, 77, 74, 0.045);
+  border-radius: 12px;
+}
+.editor-block.block-selected {
+  border-color: var(--color-terracotta);
+  box-shadow: 0 0 0 1px var(--color-terracotta);
+}
+.block-tools > span,
+.block-tools > div {
+  border-color: var(--color-stone);
+}
+.heading-block {
+  background: var(--surface-olive);
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+.heading-block h2 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 31px;
+  line-height: 1.17;
+  letter-spacing: -0.8px;
+}
+.heading-block p,
+.heading-block .eyebrow {
+  color: var(--color-ink);
+}
+.heading-block .eyebrow {
+  font-size: 9px;
+}
+.abstract-mark {
+  opacity: 0.5;
+}
+.abstract-mark span {
+  background: var(--color-terracotta);
+}
+.abstract-mark span:nth-child(2) {
+  background: var(--color-olive);
+}
+.abstract-mark span:nth-child(3) {
+  background: var(--color-stone);
+}
+blockquote > span {
+  font-family: var(--font-title);
+  font-size: 50px;
+  color: var(--color-terracotta);
+}
+blockquote p {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 16px;
+  color: var(--color-ink);
+}
+blockquote cite {
+  font-family: var(--font-body);
+}
+.add-block {
+  background: color-mix(in srgb, var(--color-white) 94%, transparent);
+  border-color: var(--color-olive);
+}
+.add-block > span {
+  background: var(--surface-rose);
+  color: var(--color-ink);
+}
+.add-block > small {
+  color: var(--color-ink);
+}
+.canvas-footer {
+  background: color-mix(in srgb, var(--color-white) 93%, transparent);
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 7px;
+}
+.hint,
+.item-editor,
+.media-placeholder,
+.format-tools button,
+th {
+  background: var(--surface-soft);
+  border-color: var(--border-soft);
+}
+.field,
+.check,
+.hint,
+.media-placeholder,
+.page-meta {
+  color: var(--color-ink);
+}
+.check input {
+  accent-color: var(--color-ink);
+}
+.upload,
+.add-module {
+  border-color: var(--color-olive);
+}
+.flashcards > div {
+  background: var(--surface-olive);
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+.flashcards span {
+  font-family: var(--font-body);
+}
+.quiz-option > span.correct-dot {
+  background: var(--color-olive);
+}
+.timeline-view section {
+  border-left-color: var(--color-terracotta);
+}
+.editor-block pre {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+.modal-backdrop {
+  background: rgba(70, 77, 74, 0.56);
+}
+.modal {
+  box-shadow: 0 30px 90px rgba(70, 77, 74, 0.25);
+}
+.modal-header h2 {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+.library-icon {
+  font-family: var(--font-title);
+}
+.color-0,
+.export-summary {
+  background: var(--surface-olive);
+  color: var(--color-ink);
+}
+.color-1 {
+  background: var(--surface-soft);
+  color: var(--color-ink);
+}
+.color-2 {
+  background: var(--surface-rose);
+  color: var(--color-ink);
+}
+.color-3 {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+.export-icon {
+  background: var(--color-olive);
+  color: var(--color-ink);
+}
+.template-art span {
+  font-family: var(--font-title);
+  font-weight: 800;
+}
+.block-library > button:hover,
+.popover button:hover {
+  background: var(--surface-soft);
+  border-color: var(--color-terracotta);
+}
+.stats-grid > div {
+  background: var(--surface-olive);
+}
+.danger {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-terracotta);
+  text-underline-offset: 4px;
+}
+.error-banner {
+  background: var(--surface-rose);
+  color: var(--color-ink);
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline-color: var(--color-ink);
+}
+@media (min-width: 1600px) {
+  .heading-block h2 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 900px) {
+  .responsive-tools {
+    background: var(--surface-soft);
+  }
+}
+@media (max-width: 600px) {
+  body {
+    background-attachment: scroll;
+  }
+  .page-heading {
+    padding: 18px;
+  }
+  .page-title-input {
+    font-size: 18px;
+  }
+  .heading-block h2 {
+    font-size: 27px;
+  }
+}
